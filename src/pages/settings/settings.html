@@ -1,9 +1,29 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Settings</ion-title>
+    <ion-title>SettingsPage</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content class="main" padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col width-100>
+        <ion-list>
+          <ion-item>
+            <ion-label fixed>
+              New default city
+            </ion-label>
+            <ion-input (keyup)="getQuery()" [(ngModel)]="citySearchString" type="text" value=""></ion-input>
+          </ion-item>
+          <p class="current">Current city: {{defaultCity}}</p>
+          <button ion-button (click)="setAsDefault()" block>Set as default</button>
+        </ion-list>
+        <ion-list *ngIf="results">
+          <ion-item *ngFor="let result of results">
+            <span (click)="setDefaultCity(result)">{{result.name}}</span>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
